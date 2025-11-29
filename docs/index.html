@@ -1,11 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AI MatchLab DATA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI MatchLab DATA</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: radial-gradient(circle at top, #0e1220, #05070d);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 900px;
+        padding: 40px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.06);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 0 40px rgba(0,0,0,0.4);
+        border: 1px solid rgba(255,255,255,0.1);
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 34px;
+        letter-spacing: 1px;
+    }
+
+    .subtitle {
+        opacity: 0.8;
+        margin-bottom: 30px;
+        font-size: 18px;
+    }
+
+    .list a {
+        display: block;
+        margin: 10px 0;
+        padding: 12px 15px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #fff;
+        background: rgba(255,255,255,0.08);
+        transition: 0.2s;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .list a:hover {
+        background: rgba(255,255,255,0.18);
+        transform: translateY(-2px);
+    }
+
+    .status {
+        margin-top: 25px;
+        font-size: 14px;
+        opacity: 0.7;
+    }
+
+    .ok { color: #4cd964; }
+    .fail { color: #ff4e4e; }
+</style>
+
 </head>
 <body>
-  <h1>AI MatchLab DATA Repository</h1>
-  <p>GitHub Pages is active.</p>
+
+<div class="container">
+    <h1>AI MatchLab DATA</h1>
+    <div class="subtitle">Global JSON data source for AI MatchLab ULTRA</div>
+
+    <div class="list">
+        <a href="data/continents.json" target="_blank">🌍 Continents JSON</a>
+        <a href="data/europe.json" target="_blank">🇪🇺 Europe JSON</a>
+        <a href="data/africa.json" target="_blank">🌍 Africa JSON</a>
+        <a href="data/asia.json" target="_blank">🌏 Asia JSON</a>
+        <a href="data/north_america.json" target="_blank">🌎 North America JSON</a>
+        <a href="data/south_america.json" target="_blank">🌎 South America JSON</a>
+        <a href="data/oceania.json" target="_blank">🌊 Oceania JSON</a>
+        <a href="data/global_competitions.json" target="_blank">🏆 Global Competitions JSON</a>
+    </div>
+
+    <div id="status" class="status">Checking data availability...</div>
+</div>
+
+<script>
+async function checkJSON() {
+    try {
+        let r = await fetch("data/continents.json");
+        if (!r.ok) throw new Error();
+        document.getElementById("status").innerHTML =
+            "<span class='ok'>✔ All data files are available and valid.</span>";
+    } catch (e) {
+        document.getElementById("status").innerHTML =
+            "<span class='fail'>⚠ Error loading data files.</span>";
+    }
+}
+checkJSON();
+</script>
+
 </body>
 </html>
